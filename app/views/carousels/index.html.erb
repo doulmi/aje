@@ -1,0 +1,28 @@
+<h1>轮播图列表</h1>
+
+<%= link_to '后退', admin_path, class: 'btn btn-default' %>
+<%= link_to '创建轮播图', new_carousel_path, class: 'btn btn-info' %>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="row">#</th>
+    <th scope="row">标题</th>
+    <th scope="row">图片</th>
+    <th scope="row" colspan="3"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @carousels.each do |carousel| %>
+    <tr>
+      <td><%= carousel.title %></td>
+      <% if carousel.src.attached? %>
+        <td><%= image_tag carousel.src, width: 100 %></td>
+      <% end %>
+
+      <td><%= link_to '编辑', edit_carousel_path(carousel) %></td>
+      <td><%= link_to '删除', carousel, method: :delete, data: {confirm: '确定要删除吗?'} %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

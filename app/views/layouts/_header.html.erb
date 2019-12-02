@@ -1,0 +1,20 @@
+<div class="container-fluid header">
+  <div class="container">
+    <header class="navbar">
+      <div>
+        <%= link_to(image_tag("logo.png", width: 60, class: 'logo'), root_path, id: "logo") %>
+        <nav>
+          <ul class="nav navbar-nav">
+            <li><%= link_to "网站首页", root_path %></li>
+            <li><%= link_to "关于我们", page_path('关于我们') %></li>
+            <li><%= link_to "入会须知", page_path('入会须知') %></li>
+            <li><%= link_to "新闻资讯", pages_path + '?type=new' %></li>
+            <li><%= link_to "活动记录", pages_path + '?type=activity' %></li>
+            <li><%= link_to "公益事业", page_path('公益事业') %></li>
+            <li><%= link_to "会员服务", page_path('会员服务') %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  </div>
+</div>

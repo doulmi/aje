@@ -1,0 +1,35 @@
+<%= render 'carousels' %>
+
+<div class="articles-container">
+  <div class="row">
+    <div class="col-md-3 col-xs-12">
+      <div class="list-group">
+        <%= link_to "本会章程", root_path, class: "list-group-item list-group-item-action " + is_active_url("本会章程") %>
+        <% ['会长致辞', '团体荣誉', '关于我们', '活动记录'].each do |title| %>
+          <%= link_to title, root_path + '?catid=' + title, class: "list-group-item list-group-item-action " + is_active_url(title) %>
+        <% end %>
+      </div>
+
+      <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action active">
+          联系方式 SERVICE
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">邮箱:</button>
+        <button type="button" class="list-group-item list-group-item-action">服务热线:</button>
+      </div>
+    </div>
+
+    <% unless @article.nil? %>
+      <div class="col-md-9 col-xs-12">
+        <h1 id="title"><%= @article.title %></h1>
+
+        <p>
+          <%= raw @article.rendered_content %>
+        </p>
+
+      </div>
+    <% end %>
+  </div>
+
+
+</div>

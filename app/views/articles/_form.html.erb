@@ -1,0 +1,57 @@
+<link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.10.0/css/bootstrap-markdown.min.css">
+<link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown-editor/2.0.2/css/bootstrap-markdown-editor.css">
+
+<%= form_with(model: article, local: true) do |form| %>
+  <% if article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+        <% article.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title, '标题' %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :raw_content, '内容' %>
+    <%= form.text_area :raw_content, rows: 15, class: 'form-control', id: 'markdown-editor' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :level, '类型' %>
+    <select name="article[level]" id="article_level">
+      <% {new: '新闻', activity: '活动', page: '页面'}.each_pair do |key, value| %>
+        <option value="<%= key %>" <%= article.level == key.to_s ? 'selected' : ''%>><%= value %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <%= form.submit class: 'btn btn-info' %>
+<% end %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.10.0/js/bootstrap-markdown.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/ace.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown-editor/2.0.2/js/bootstrap-markdown-editor.js"></script>
+
+<script>
+    $('#markdown-editor').markdownEditor({
+        imageUpload: true, // Activate the option
+        uploadPath: '/images', // Path of the server side script that receive the files
+        afterAll: function () {
+            msgs.default.show();
+            msgs.loading.hide();
+            msgs.err.hide();
+        },
+        uploadFinished: function (i, file, response, time) {
+            $md.val($md.val() + "![" + file.name + "](http://photography.naturestocklibrary.com/orca-stock-photo.jpg)\n").trigger('change');
+            // response is the data you got back from server in JSON format.
+        }
+    });
+</script>

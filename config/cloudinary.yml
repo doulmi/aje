@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: wukongsongcai
+  api_key: '246495597212797'
+  api_secret: 8XbSed6WsrIH-dsVGrn8_o4KXdM
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: wukongsongcai
+  api_key: '246495597212797'
+  api_secret: 8XbSed6WsrIH-dsVGrn8_o4KXdM
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: wukongsongcai
+  api_key: '246495597212797'
+  api_secret: 8XbSed6WsrIH-dsVGrn8_o4KXdM
+  enhance_image_tag: true
+  static_file_support: false

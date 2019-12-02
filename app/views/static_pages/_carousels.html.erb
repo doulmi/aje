@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+
+<div class="carousel-container">
+  <!-- Slider main container -->
+  <div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <% @carousels.each do |carousel| %>
+        <% if carousel.src.attached? %>
+          <div class="swiper-slide"><%= image_tag carousel.src, class: 'carousel-image' %></div>
+        <% end %>
+      <% end %>
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        // Optional parameters
+        loop: true,
+
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+        },
+    })
+</script>
