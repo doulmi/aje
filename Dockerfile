@@ -1,20 +1,35 @@
-FROM ruby:2.6.5
+# Dockerfile
+FROM ruby:2.6.5-alpine
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash \
-    && apt-get update && apt-get install -y nodejs postgresql-client  && rm -rf /var/lib/apt/lists/* \
-    && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-    && apt-get update && apt-get install -y yarn && rm -rf /var/lib/apt/lists/*
+ENV PROJECT aje
 
-RUN mkdir /myapp
-WORKDIR /myapp
-COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
+RUN mkdir -p $PROJECT
+WORKDIR $PROJECT
+
+RUN apk add git
+RUN apk add --update bash perl
+RUN apk add libxslt-dev libxml2-dev build-base
+RUN apk add mysql-client mysql-dev
+RUN apk add --no-cache file
+RUN apk add yarn --no-cache
+
+COPY . ./
+
 RUN bundle install
 RUN yarn install
-COPY . /myapp
+VOLUME /$PROJECT
 
-# Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0", "-C", "--no-dev-caching", "-e", "development"]
+RUN mkdir -p tmp/sockets
 
-EXPOSE 3000
+RUN mkdir -p /tmp/public && \
+    cp -rf /neptune/public/* /tmp/public
+
+
+# nginx/Dockerfile
+FROM nginx:1.17.4-alpine
+
+RUN rm -f /etc/nginx/conf.d/*
+
+ADD nginx.conf /etc/nginx/conf.d/neptune.conf
+
+CMD /usr/sbin/nginx -g 'daemon off;' -c /etc/nginx/nginx.conf

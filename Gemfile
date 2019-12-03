@@ -26,10 +26,6 @@ gem 'jbuilder', '~> 2.7'
 gem 'redcarpet', '3.5.0'
 gem 'cloudinary'
 
-gem 'capistrano-rails'
-gem 'capistrano-bundler'
-gem 'capistrano-rbenv'
-
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -39,7 +35,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capistrano', "~> 3.11", require: false
 end
 
 group :development do
