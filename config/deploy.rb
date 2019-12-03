@@ -3,7 +3,7 @@ lock "~> 3.11.2"
 
 set :puma_conf, "/var/www/aje/shared/config/puma.rb"
 set :application, "aje"
-set :repo_url, "git@github.com:doulmi/aje.git"
+set :repo_url, "https://github.com/doulmi/aje.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
