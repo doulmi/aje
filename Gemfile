@@ -36,7 +36,7 @@ gem 'capistrano'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
 gem 'capistrano-rbenv'
-gem 'capistrano3-puma'
+gem 'capistrano3-puma', github: "seuros/capistrano-puma"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
