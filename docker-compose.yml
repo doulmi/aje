@@ -1,14 +1,30 @@
 version: '3'
 services:
-  db:
-    image: postgres
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
-  web:
-    build: .
-    volumes:
-      - .:/myapp
+      - .:/afe
+      - /afe/node_modules
+      - public-data:/afe/public
+      - tmp-data:/afe/tmp
+      - log-data:/afe/log
+    environment:
+      RAILS_ENV: production
+    command: sh scripts/launch.sh
+  nginx:
+    build: 
+      context: .
+      dockerfile: ./docker/web/Dockerfile
     ports:
-      - "3000:3000"
+      - 80:80
     depends_on:
-      - db
+      - app
+    volumes:
+      - public-data:/afe/public
+      - tmp-data:/afe/tmp
+volumes:
+  public-data:
+  tmp-data:
+  log-data:
