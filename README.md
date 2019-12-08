@@ -24,4 +24,6 @@ Copy master.key to production env
 cap install
 cap production deploy
 
+in server: current diretory
+puma -b unix:/home/ubuntu/aje/shared/tmp/sockets/puma.sock -e production -d
 * ...
