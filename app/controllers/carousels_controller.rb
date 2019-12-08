@@ -1,4 +1,5 @@
 class CarouselsController < ApplicationController
+  before_action :require_login
   before_action :set_carousel, only: [:show, :edit, :update, :destroy]
 
   # GET /carousels
@@ -20,35 +21,30 @@ class CarouselsController < ApplicationController
   # GET /carousels/1/edit
   def edit
     @carousel = Carousel.find_by(params[:id])
-end
+  end
 
-  # POST /carousels
-  # POST /carousels.json
   def create
     @carousel = Carousel.new(carousel_params)
-
-    respond_to do |format|
-      if @carousel.save
-        @carousel.src.attach(carousel_params[:src])
-        format.html { redirect_to carousels_path, notice: 'Carousel was successfully created.' }
-        format.json { render :show, status: :created, location: @carousel }
-      else
-        format.html { render :new }
-        format.json { render json: @carousel.errors, status: :unprocessable_entity }
-      end
+    if @carousel.save
+      @carousel.src.attach(carousel_params[:src])
+      flash[:success] = '创建成功'
+      redirect_to carousels_path
+    else
+      flash.now[:error] = '创建失败'
+      render new
     end
   end
 
   # PATCH/PUT /carousels/1
   # PATCH/PUT /carousels/1.json
   def update
-    respond_to do |format|
-      if @carousel.update(carousel_params)
-        @carousel.src.attach(carousel_params[:src])
-        format.html { redirect_to carousels_path, notice: 'Carousel was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @carousel.update(carousel_params)
+      @carousel.src.attach(carousel_params[:src])
+      flash[:success] = '创建成功'
+      redirect_to carousels_path
+    else
+      flash.now[:error] = '创建失败'
+      render new
     end
   end
 
@@ -57,19 +53,27 @@ end
   def destroy
     @carousel.destroy
     respond_to do |format|
-      format.html { redirect_to carousels_url, notice: 'Carousel was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to carousels_url, notice: 'Carousel was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_carousel
-      @carousel = Carousel.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def carousel_params
-      params.require(:carousel).permit(:title, :src, :url)
+  # Use callbacks to share common setup or constraints between actions.
+  def set_carousel
+    @carousel = Carousel.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def carousel_params
+    params.require(:carousel).permit(:title, :src, :url)
+  end
+
+  def require_login
+    unless log_in?
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to login_path
     end
+  end
 end

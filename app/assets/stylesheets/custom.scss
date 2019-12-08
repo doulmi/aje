@@ -20,7 +20,7 @@ img {
 }
 
 header.navbar {
-  margin-top: 120px;
+  margin-top: 160px;
   background-color: white;
   padding: 20px;
   margin-bottom: 0;
@@ -36,8 +36,10 @@ header.navbar {
 
 /* universal */
 body {
-  background: url("https://via.placeholder.com/1920x700") no-repeat;
+  background-image: asset-url("bg.jpg");
+  background-repeat: no-repeat;
   background-size: 100%;
+  background-color: #F7F7F7;
   //background-image: url(asset_path("logo.png"));
 }
 
@@ -227,4 +229,34 @@ input {
 
 .articles-container {
   margin-top: 20px;
+}
+
+.article-title {
+  color: #222222;
+  font-size: 16px;
+}
+
+.article-detail-btn {
+  color: green;
+
+  &:hover {
+    color: darkgreen;
+  }
+}
+
+.borderless td, .borderless th {
+  border: none !important;
+  padding: 10px !important;
+  border-bottom: 1px solid whitesmoke !important;
+}
+
+.article-detail-title {
+  text-align: center;
+  border-bottom: none;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.article-detail-content {
+  
 }

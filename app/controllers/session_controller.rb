@@ -14,7 +14,7 @@ class SessionController < ApplicationController
     elsif user.authenticate(params[:session][:password])
       log_in user
       # session[:user_id] = user.id
-      redirect_to user
+      redirect_to admin_path
     else
       flash[:danger] = "密码错误"
       render 'new'
@@ -23,7 +23,7 @@ class SessionController < ApplicationController
 
   def destroy
     logout
-    redirect_to root_path
+    redirect_to admin_path
   end
 
   private

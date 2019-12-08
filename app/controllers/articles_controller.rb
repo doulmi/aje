@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action only: [:show, :edit, :update, :destroy]
+  before_action :require_login
 
   # GET /articles
   # GET /articles.json
@@ -69,9 +69,15 @@ class ArticlesController < ApplicationController
   end
 
   private
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def article_params
+      params.require(:article).permit(:title, :raw_content, :rendered_content, :level)
+    end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def article_params
-    params.require(:article).permit(:title, :raw_content, :rendered_content, :level)
-  end
+    def require_login
+      unless log_in?
+        flash[:error] = "You must be logged in to access this section"
+        redirect_to login_path
+      end
+    end
 end

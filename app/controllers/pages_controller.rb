@@ -10,6 +10,6 @@ class PagesController < ApplicationController
     type = params[:type] || 'new'
     @articles = Article.where(level: type)
                     .order(created_at: :desc)
-                    .select(:title, :rendered_content, :created_at)
+                    .select(:id, :title, :rendered_content, :created_at)
   end
 end

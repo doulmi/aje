@@ -5,10 +5,10 @@
         <div class="col-md-4 col-xs-6">
           <ul>
             <li>
-              电话: <%= link_to "xxxxxxxx", "tel:xxxxxxxxx" %>
+              电话: <%= link_to "06.59.46.73.50", "tel:0659467350" %>
             </li>
             <li>
-              邮箱: <%= link_to "xxxxxxxx", "mailto:xxxxxxxxx@gmail.com" %>
+              邮箱: <%= link_to "ajefparis@gmail.com", "mailto:ajefparis@gmail.com" %>
             </li>
           </ul>
         </div>
@@ -20,34 +20,30 @@
                   <%= link_to "网站首页", root_path %>
                 </li>
                 <li>
-                  <%= link_to "新闻资讯", '#' %>
+                  <%= link_to "活动记录", pages_path + '?type=activity' %>
                 </li>
                 <li>
-                  <%= link_to "活动记录", '#' %>
-                </li>
-                <li>
-                  <%= link_to "入会须知", '#' %>
+                  <%= link_to "入会须知", page_path('入会须知') %>
                 </li>
               </ul>
             </div>
             <div class="col-md-6">
               <ul>
                 <li>
-                  <%= link_to "关于我们", '#' %>
+                  <%= link_to "关于我们", page_path('关于我们')  %>
                 </li>
                 <li>
-                  <%= link_to "会员风采", '#' %>
+                  <%= link_to "会员风采", page_path('会员服务') %>
                 </li>
                 <li>
-                  <%= link_to "公益事业", '#' %>
+                  <%= link_to "公益事业", page_path('公益事业') %>
                 </li>
               </ul>
             </div>
           </div>
-
         </div>
         <div class="col-md-4 col-xs-12">
-          <%= image_tag 'https://via.placeholder.com/256x256', width: 50 %>
+          <%= image_tag 'qr.png', width: 50 %>
           <div>入会申请</div>
         </div>
       </div>
