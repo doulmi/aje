@@ -7,7 +7,7 @@ server "35.181.148.159", user: "ubuntu", roles: %w{app db web}
 set :ssh_options, {
   forward_agent: true,
   auth_methods: %w[publickey],
-  keys: %w[~/Downloads/afe1.pem]
+  keys: %w[./afe1.pem]
 }
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
