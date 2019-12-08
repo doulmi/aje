@@ -10,6 +10,7 @@ Things you may want to cover:
 * System dependencies
 
 * Configuration
+Copy master.key to production env
 
 * Database creation
 
@@ -20,5 +21,7 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+cap install
+cap production deploy
 
 * ...

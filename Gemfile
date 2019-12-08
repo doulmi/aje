@@ -37,6 +37,12 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
+gem 'capistrano'
+gem 'capistrano-rails'
+gem 'capistrano-bundler'
+gem 'capistrano-rbenv'
+gem 'capistrano3-puma' , group: :development
+
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '4.0.1'
@@ -44,11 +50,7 @@ group :development do
   gem 'spring', '2.1.0'
   gem 'spring-watcher-listen', '2.0.1'
 
-  gem 'capistrano'
-  gem 'capistrano-rails'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rbenv'
-  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
+
 end
 
 group :test do
