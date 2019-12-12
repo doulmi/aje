@@ -3,6 +3,7 @@
 
 /* mixins, variables, etc. */
 $gray-medium-light: #eaeaea;
+$primary-color: #5a7a59;
 
 img {
   max-width: 100%;
@@ -16,6 +17,7 @@ img {
 
   .nav.navbar-nav {
     margin-top: 6px;
+    font-size: 16px;
   }
 }
 
@@ -39,8 +41,6 @@ body {
   background-image: asset-url("bg.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
-  background-color: #F7F7F7;
-  //background-image: url(asset_path("logo.png"));
 }
 
 section {
@@ -186,7 +186,7 @@ input {
 }
 
 .swiper-pagination-bullet-active {
-  background: green !important;
+  background: $primary-color !important;
 }
 
 .footer {
@@ -217,8 +217,8 @@ input {
 }
 
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
-  background-color: green;
-  border-color: green;
+  background-color: $primary-color;
+  border-color: $primary-color;
 }
 
 .main-container {
@@ -237,10 +237,10 @@ input {
 }
 
 .article-detail-btn {
-  color: green;
+  color: $primary-color;
 
   &:hover {
-    color: darkgreen;
+    color: $primary-color;
   }
 }
 
@@ -258,5 +258,5 @@ input {
 }
 
 .article-detail-content {
-  
+
 }

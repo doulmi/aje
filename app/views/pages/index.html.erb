@@ -2,11 +2,10 @@
   <tbody>
   <% @articles.each do |article| %>
     <tr>
-      <td><%= link_to article.title, page_path(article), class: 'article-title'%></td>
+      <td><%= link_to article.title, page_path(article), class: 'article-title' %></td>
       <td><%= article.created_at&.strftime('%F %T') %></td>
       <td><%= link_to '查看详情', page_path(article), class: 'article-detail-btn' %></td>
     </tr>
   <% end %>
   </tbody>
 </table>
-
