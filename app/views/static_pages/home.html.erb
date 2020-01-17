@@ -7,9 +7,10 @@
       <div class="col-md-3 col-xs-12">
         <div class="list-group">
           <%= link_to "本会章程", root_path, class: "list-group-item list-group-item-action " + is_active_url("本会章程") %>
-          <% ['会长致辞', '团体荣誉', '关于我们', '活动记录'].each do |title| %>
+          <% ['会长致辞', '团体荣誉', '关于我们'].each do |title| %>
             <%= link_to title, root_path + '?catid=' + title, class: "list-group-item list-group-item-action " + is_active_url(title) %>
           <% end %>
+          <%= link_to '活动记录', pages_path + '?type=activity', class: "list-group-item list-group-item-action " %>
         </div>
 
         <div class="list-group">
